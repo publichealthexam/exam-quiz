@@ -286,7 +286,7 @@
             </table>
         </div>
 
-        <button class="btn btn-success" onclick="showAnswersPage()" style="margin-top: 15px;">📖 กดดูเฉลยละเอียด</button>
+        <button class="btn btn-success" onclick="showAnswersPage()" style="margin-top: 15px;">📖 กดดูเฉลย</button>
         <button class="btn" onclick="restartGame()" style="margin-top: 10px; background: #64748b;">🔄 กลับหน้าแรก</button>
 
         <div class="footer">
@@ -488,7 +488,7 @@
     }
 
     async function saveScoreToSheet(name, score, time) {
-        if (SCRIPT_URL === "YOUR_GOOGLE_SCRIPT_URL_HERE") return;
+        if (SCRIPT_URL === "https://script.google.com/macros/s/AKfycbw4sMpQn4Of6et_PGk-cVd2kvkYyBrl3e_uQejl1Gi6P4XOTsSyoQha8XdkdBn6UliA/exec") return;
         try {
             await fetch(SCRIPT_URL, {
                 method: "POST",
