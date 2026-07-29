@@ -12,15 +12,16 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
         :root {
-            --primary: #00b4d8;
-            --primary-dark: #0077b6;
-            --secondary: #7209b7;
-            --accent: #ffb703;
-            --success: #2ec4b6;
-            --danger: #e63946;
-            --bg-gradient: linear-gradient(135deg, #e0f7fa 0%, #e8eaf6 100%);
-            --card-bg: rgba(255, 255, 255, 0.95);
-            --text-main: #2b2d42;
+            /* โทนสีใหม่: เขียว-เหลือง-แดง */
+            --primary: #10b981;          /* เขียวมรกตสดใส */
+            --primary-dark: #047857;     /* เขียวเข้ม */
+            --secondary: #d97706;        /* เหลืองอำพัน/ส้มเหลือง */
+            --accent: #f59e0b;           /* เหลืองทอง */
+            --danger: #ef4444;           /* แดง */
+            --success: #10b981;          /* เขียว */
+            --bg-gradient: linear-gradient(135deg, #ecfdf5 0%, #fef3c7 50%, #fee2e2 100%);
+            --card-bg: rgba(255, 255, 255, 0.96);
+            --text-main: #1f2937;
         }
 
         * {
@@ -46,10 +47,10 @@
             width: 100%;
             background: var(--card-bg);
             border-radius: 24px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            box-shadow: 0 10px 30px rgba(16, 185, 129, 0.12);
             padding: 30px;
             backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.6);
+            border: 2px solid #a7f3d0;
             transition: all 0.3s ease;
         }
 
@@ -69,7 +70,7 @@
         }
 
         header p {
-            color: #6c757d;
+            color: #4b5563;
             font-size: 0.95rem;
             margin-top: 5px;
         }
@@ -102,16 +103,18 @@
         input[type="text"] {
             width: 100%;
             padding: 14px 20px;
-            border: 2px solid #e0e0e0;
+            border: 2px solid #d1fae5;
             border-radius: 12px;
             font-size: 1rem;
             outline: none;
             transition: 0.3s;
+            background: #f9fafb;
         }
 
         input[type="text"]:focus {
             border-color: var(--primary);
-            box-shadow: 0 0 0 4px rgba(0, 180, 216, 0.15);
+            background: #fff;
+            box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.15);
         }
 
         .btn {
@@ -128,25 +131,25 @@
             align-items: center;
             justify-content: center;
             gap: 10px;
-            box-shadow: 0 4px 15px rgba(0, 180, 216, 0.3);
+            box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
             transition: 0.3s;
         }
 
         .btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(0, 180, 216, 0.4);
+            box-shadow: 0 6px 20px rgba(16, 185, 129, 0.4);
         }
 
         .leaderboard {
             margin-top: 30px;
-            background: #f8f9fa;
+            background: #f0fdf4;
             border-radius: 16px;
             padding: 20px;
-            border: 1px solid #e9ecef;
+            border: 1px solid #bbf7d0;
         }
 
         .leaderboard h3 {
-            color: var(--secondary);
+            color: var(--primary-dark);
             margin-bottom: 15px;
             display: flex;
             align-items: center;
@@ -161,29 +164,30 @@
         }
 
         th, td {
-            padding: 10px 12px;
+            padding: 12px;
             text-align: left;
-            border-bottom: 1px solid #dee2e6;
+            border-bottom: 1px solid #e5e7eb;
         }
 
         th {
-            background-color: #eef2f7;
-            color: #495057;
+            background-color: #d1fae5;
+            color: var(--primary-dark);
             font-weight: 600;
         }
 
-        tr:nth-child(1) td:first-child { color: #ffb703; font-weight: bold; }
-        tr:nth-child(2) td:first-child { color: #adb5bd; font-weight: bold; }
-        tr:nth-child(3) td:first-child { color: #cd7f32; font-weight: bold; }
+        tr:nth-child(1) td:first-child { color: #d97706; font-weight: bold; } /* อันดับ 1 สีทอง */
+        tr:nth-child(2) td:first-child { color: #6b7280; font-weight: bold; } /* อันดับ 2 เงิน */
+        tr:nth-child(3) td:first-child { color: #b45309; font-weight: bold; } /* อันดับ 3 ทองแดง */
 
         .quiz-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
             margin-bottom: 20px;
-            background: #e0f7fa;
+            background: #fef3c7;
             padding: 12px 20px;
             border-radius: 12px;
+            border: 1px solid #fde68a;
         }
 
         .timer-box {
@@ -197,7 +201,7 @@
 
         .question-number {
             font-weight: 600;
-            color: var(--primary-dark);
+            color: var(--secondary);
         }
 
         .question-text {
@@ -216,7 +220,7 @@
 
         .option-item {
             background: #fff;
-            border: 2px solid #e9ecef;
+            border: 2px solid #e5e7eb;
             border-radius: 12px;
             padding: 14px 18px;
             cursor: pointer;
@@ -229,12 +233,12 @@
 
         .option-item:hover {
             border-color: var(--primary);
-            background: #f0fdfa;
+            background: #f0fdf4;
         }
 
         .option-item.selected {
             border-color: var(--primary-dark);
-            background: #e0f7fa;
+            background: #d1fae5;
             font-weight: 500;
         }
 
@@ -254,7 +258,7 @@
         }
 
         .answer-card {
-            background: #f8f9fa;
+            background: #f9fafb;
             border-radius: 12px;
             padding: 16px;
             margin-bottom: 15px;
@@ -262,15 +266,15 @@
             text-align: left;
         }
 
-        .answer-card.correct-card { border-left-color: var(--success); }
-        .answer-card.wrong-card { border-left-color: var(--danger); }
+        .answer-card.correct-card { border-left-color: var(--success); background: #f0fdf4; }
+        .answer-card.wrong-card { border-left-color: var(--danger); background: #fef2f2; }
 
         .answer-title {
             font-weight: 600;
             margin-bottom: 8px;
         }
 
-        .user-ans { color: #495057; }
+        .user-ans { color: #374151; }
         .correct-ans { color: var(--success); font-weight: 600; }
 
         footer {
@@ -278,12 +282,10 @@
             margin-top: 25px;
             padding: 15px 0 5px 0;
             font-size: 0.9rem;
-            color: #6c757d;
+            color: #4b5563;
             font-weight: 500;
             border-top: 1px solid rgba(0,0,0,0.05);
         }
-
-        footer i { color: #e63946; }
 
         @media (max-width: 600px) {
             .container { padding: 20px; }
@@ -296,7 +298,7 @@
 
     <div class="container">
         <header>
-            <h1><i class="fa-solid fa-notes-medical"></i> แบบทดสอบออนไลน์</h1>
+            <h1><i class="fa-solid fa-notes-medical" style="color: var(--primary);"></i> แบบทดสอบออนไลน์</h1>
             <p>นักวิชาการสาธารณสุข สป.สธ.</p>
         </header>
 
@@ -309,7 +311,7 @@
             <button class="btn" onclick="startQuiz()"><i class="fa-solid fa-play"></i> เริ่มทำแบบทดสอบ</button>
 
             <div class="leaderboard">
-                <h3><i class="fa-solid fa-trophy"></i> สถิติคะแนนสูงสุด 5 อันดับแรก</h3>
+                <h3><i class="fa-solid fa-trophy" style="color: var(--accent);"></i> สถิติคะแนนสูงสุด 5 อันดับแรก</h3>
                 <table>
                     <thead>
                         <tr>
@@ -330,7 +332,7 @@
         <div id="page2" class="page">
             <div class="quiz-header">
                 <div class="question-number" id="question-count">ข้อที่ 1 / 30</div>
-                <div class="timer-box"><i class="fa-regular fa-clock"></i> <span id="timer-display">00:00</span></div>
+                <div class="timer-box"><i class="fa-regular fa-clock"></i> <span id="timer-display">0:00</span></div>
             </div>
 
             <div class="question-text" id="question-text">คำถามจะแสดงที่นี่</div>
@@ -342,7 +344,7 @@
         <!-- หน้า 3: สรุปผล -->
         <div id="page3" class="page">
             <div class="result-card">
-                <h2><i class="fa-solid fa-square-poll-vertical"></i> ผลการทำแบบทดสอบ</h2>
+                <h2><i class="fa-solid fa-square-poll-vertical" style="color: var(--primary);"></i> ผลการทำแบบทดสอบ</h2>
                 
                 <div class="summary-table">
                     <table>
@@ -370,7 +372,7 @@
                 </div>
 
                 <div class="leaderboard" style="margin-bottom: 20px;">
-                    <h3><i class="fa-solid fa-ranking-star"></i> สถิติสูงสุด 5 อันดับล่าสุด</h3>
+                    <h3><i class="fa-solid fa-ranking-star" style="color: var(--accent);"></i> สถิติสูงสุด 5 อันดับล่าสุด</h3>
                     <table>
                         <thead>
                             <tr>
@@ -392,8 +394,8 @@
 
         <!-- หน้า 4: เฉลย -->
         <div id="page4" class="page">
-            <h2><i class="fa-solid fa-book-open"></i> เฉลยแบบทดสอบ</h2>
-            <p style="margin-bottom: 20px; color:#6c757d;">ทบทวนข้อที่ทำถูกและข้อที่ทำผิดเพื่อการเตรียมตัวสอบที่ดีขึ้น</p>
+            <h2><i class="fa-solid fa-book-open" style="color: var(--primary);"></i> เฉลยแบบทดสอบ</h2>
+            <p style="margin-bottom: 20px; color:#4b5563;">ทบทวนข้อที่ทำถูกและข้อที่ทำผิดเพื่อการเตรียมตัวสอบที่ดีขึ้น</p>
             <div id="answers-container"></div>
             <button class="btn" onclick="restartQuiz()" style="margin-top: 20px;"><i class="fa-solid fa-rotate-right"></i> กลับไปหน้าแรก</button>
         </div>
@@ -404,11 +406,11 @@
     </div>
 
     <script>
-        const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzj3Ld3hnziCOvjE2nLZajiVFso3VQjPTqCoQz9xJ2dNzbMX2JQqGKc2W0cA5p17wfc/exec";
+        const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwRg9-fN8Nnj4-wITBGTVxBq-cYfWzzV63akPb_uNCwFTOvKm26cAxbpB2jiIZxm1JW/exec";
 
         const questions = [
             { q: "1. ข้อใดคือ พันธกิจ ของกระทรวงสาธารณสุข", options: ["ก. ประชาชนสุขภาพดี เจ้าหน้าที่มีความสุข ระบบสุขภาพยั่งยืน", "ข. พัฒนาและอภิบาลระบบสุขภาพ อย่างมีส่วนร่วม และยั่งยืน", "ค. อภิบาลระบบบริการสุขภาพให้ได้มาตรฐานสากล โดยการมีส่วนร่วมของทุกภาคส่วนอย่างต่อเนื่อง", "ง. เป็นองค์กรหลักด้านสุขภาพ ที่รวมพลังเพื่อประชาชนสุขภาพดี"], ans: 1 },
-            { q: "2. ใครเป็นรัฐมนตรีว่าการกระทรวงสาธารณสุข", options: ["ก. อนุทิน ชาญวีรกูล", "ข. ชลน่าน ศรีแก้ว", "ค. พัฒนา พร้อมพัฒน์", "ง. สมศักดิ์ เทพสุทิน"], ans: 3 }, // แก้ไขเฉลยเป็น สมศักดิ์ เทพสุทิน
+            { q: "2. ใครเป็นรัฐมนตรีว่าการกระทรวงสาธารณสุข", options: ["ก. อนุทิน ชาญวีรกูล", "ข. ชลน่าน ศรีแก้ว", "ค. พัฒนา พร้อมพัฒน์", "ง. สมศักดิ์ เทพสุทิน"], ans: 3 },
             { q: "3. หากพบผู้ประสบเหตุหมดสติ สิ่งแรกที่ควรทำคือข้อใด", options: ["ก. รีบนำส่งโรงพยาบาลทันที", "ข. โทรแจ้ง 1669 ทันที", "ค. เรียกให้คนอื่นช่วย", "ง. ประเมินความปลอดภัยของสถานที่"], ans: 3 },
             { q: "4. นักวิชาการสาธารณสุขลงพื้นที่ครั้งแรกและต้องการเห็นตำแหน่งบ้าน แหล่งน้ำ วัด โรงเรียน และกลุ่มเสี่ยง ควรใช้เครื่องมือใดก่อน", options: ["ก. แผนที่เดินดิน", "ข. ผังเครือญาติ", "ค. ปฏิทินชุมชน", "ง. ประวัติชีวิต"], ans: 0 },
             { q: "5. สำนักงานคณะกรรมการคุ้มครองผู้บริโภค (สคบ.) อยู่ภายใต้หน่วยงานใด", options: ["ก. กระทรวงสาธารณสุข", "ข. สำนักนายกรัฐมนตรี", "ค. กระทรวงมหาดไทย", "ง. กระทรวงพาณิชย์"], ans: 1 },
@@ -461,8 +463,9 @@
                 secondsElapsed++;
                 let mins = Math.floor(secondsElapsed / 60);
                 let secs = secondsElapsed % 60;
+                // ปรับให้การแสดงผลเป็น m:ss (เช่น 1:42) ให้เหมือนกับใน Sheet
                 document.getElementById('timer-display').innerText = 
-                    `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+                    `${mins}:${secs.toString().padStart(2, '0')}`;
             }, 1000);
         }
 
@@ -470,7 +473,7 @@
             clearInterval(timerInterval);
             let mins = Math.floor(secondsElapsed / 60);
             let secs = secondsElapsed % 60;
-            return `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+            return `${mins}:${secs.toString().padStart(2, '0')}`;
         }
 
         function startQuiz() {
@@ -557,10 +560,10 @@
             scoreChart = new Chart(ctx, {
                 type: 'doughnut',
                 data: {
-                    labels: ['ทำได้', 'ทำไม่ได้'],
+                    labels: ['ทำได้ (เขียว)', 'ทำไม่ได้ (แดง)'],
                     datasets: [{
                         data: [correct, wrong],
-                        backgroundColor: ['#2ec4b6', '#e63946'],
+                        backgroundColor: ['#10b981', '#ef4444'],
                         borderWidth: 0
                     }]
                 },
@@ -601,7 +604,6 @@
             showPage('page1');
         }
 
-        // แก้ไขเงื่อนไขตรงนี้ ให้ยิง API ได้ตามปกติ
         function saveScore(name, score, timeSpent) {
             if (!SCRIPT_URL) return;
 
@@ -615,7 +617,6 @@
             }).catch(err => console.error("Error saving score:", err));
         }
 
-        // แก้ไขเงื่อนไขตรงนี้
         function fetchLeaderboard() {
             if (!SCRIPT_URL) {
                 const dummy = "<tr><td colspan='4' style='text-align:center; color:#888;'>กรุณาตั้งค่า SCRIPT_URL เพื่อเปิดใช้ระบบสถิติออนไลน์</td></tr>";
