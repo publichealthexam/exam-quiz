@@ -88,7 +88,6 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* Form elements */
         .input-group {
             margin-bottom: 20px;
         }
@@ -138,7 +137,6 @@
             box-shadow: 0 6px 20px rgba(0, 180, 216, 0.4);
         }
 
-        /* Leaderboard Table */
         .leaderboard {
             margin-top: 30px;
             background: #f8f9fa;
@@ -178,7 +176,6 @@
         tr:nth-child(2) td:first-child { color: #adb5bd; font-weight: bold; }
         tr:nth-child(3) td:first-child { color: #cd7f32; font-weight: bold; }
 
-        /* Timer Bar */
         .quiz-header {
             display: flex;
             justify-content: space-between;
@@ -241,7 +238,6 @@
             font-weight: 500;
         }
 
-        /* Result Summary */
         .result-card {
             text-align: center;
             padding: 10px 0;
@@ -257,7 +253,6 @@
             margin: 20px auto;
         }
 
-        /* Answer Key Sheet */
         .answer-card {
             background: #f8f9fa;
             border-radius: 12px;
@@ -278,7 +273,6 @@
         .user-ans { color: #495057; }
         .correct-ans { color: var(--success); font-weight: 600; }
 
-        /* Footer */
         footer {
             text-align: center;
             margin-top: 25px;
@@ -301,13 +295,12 @@
 <body>
 
     <div class="container">
-        <!-- Header Dynamic Title -->
         <header>
             <h1><i class="fa-solid fa-notes-medical"></i> แบบทดสอบออนไลน์</h1>
             <p>นักวิชาการสาธารณสุข สป.สธ.</p>
         </header>
 
-        <!-- หน้าแรก (หน้า 1): กรอกชื่อ + สถิติสูงสุด -->
+        <!-- หน้า 1: กรอกชื่อ + สถิติ -->
         <div id="page1" class="page active">
             <div class="input-group">
                 <label for="username"><i class="fa-solid fa-user-pen"></i> กรอกชื่อก่อนเริ่มทำแบบทดสอบ:</label>
@@ -333,7 +326,7 @@
             </div>
         </div>
 
-        <!-- หน้า 2: แบบทดสอบทีละข้อ -->
+        <!-- หน้า 2: ทำแบบทดสอบ -->
         <div id="page2" class="page">
             <div class="quiz-header">
                 <div class="question-number" id="question-count">ข้อที่ 1 / 30</div>
@@ -346,7 +339,7 @@
             <button class="btn" id="next-btn" onclick="nextQuestion()"><i class="fa-solid fa-arrow-right"></i> ข้อถัดไป</button>
         </div>
 
-        <!-- หน้าสรุปผลหลังกดส่งคำตอบ -->
+        <!-- หน้า 3: สรุปผล -->
         <div id="page3" class="page">
             <div class="result-card">
                 <h2><i class="fa-solid fa-square-poll-vertical"></i> ผลการทำแบบทดสอบ</h2>
@@ -397,7 +390,7 @@
             </div>
         </div>
 
-        <!-- หน้า 4: เฉลยแบบทดสอบ -->
+        <!-- หน้า 4: เฉลย -->
         <div id="page4" class="page">
             <h2><i class="fa-solid fa-book-open"></i> เฉลยแบบทดสอบ</h2>
             <p style="margin-bottom: 20px; color:#6c757d;">ทบทวนข้อที่ทำถูกและข้อที่ทำผิดเพื่อการเตรียมตัวสอบที่ดีขึ้น</p>
@@ -405,20 +398,17 @@
             <button class="btn" onclick="restartQuiz()" style="margin-top: 20px;"><i class="fa-solid fa-rotate-right"></i> กลับไปหน้าแรก</button>
         </div>
 
-        <!-- Footer ทุกหน้า -->
         <footer>
             เพจ : เตรียมสอบนักวิชาการสาธารณสุข By Studybrownn
         </footer>
     </div>
 
     <script>
-        // *** วาง URL ที่ได้จากการ Deploy Google Apps Script ตรงนี้ ***
         const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzYPlODFoSmuRrEfnr72libaRUtFJK24CvkqOLUDNAyP2tgl5EcwJDxXGt89q-Xsclf/exec";
 
-        // ข้อสอบ 30 ข้อ
         const questions = [
             { q: "1. ข้อใดคือ พันธกิจ ของกระทรวงสาธารณสุข", options: ["ก. ประชาชนสุขภาพดี เจ้าหน้าที่มีความสุข ระบบสุขภาพยั่งยืน", "ข. พัฒนาและอภิบาลระบบสุขภาพ อย่างมีส่วนร่วม และยั่งยืน", "ค. อภิบาลระบบบริการสุขภาพให้ได้มาตรฐานสากล โดยการมีส่วนร่วมของทุกภาคส่วนอย่างต่อเนื่อง", "ง. เป็นองค์กรหลักด้านสุขภาพ ที่รวมพลังเพื่อประชาชนสุขภาพดี"], ans: 1 },
-            { q: "2. ใครเป็นรัฐมนตรีว่าการกระทรวงสาธารณสุข", options: ["ก. อนุทิน ชาญวีรกูล", "ข. ชลน่าน ศรีแก้ว", "ค. พัฒนา พร้อมพัฒน์", "ง. สมศักดิ์ เทพสุทิน"], ans: 2 },
+            { q: "2. ใครเป็นรัฐมนตรีว่าการกระทรวงสาธารณสุข", options: ["ก. อนุทิน ชาญวีรกูล", "ข. ชลน่าน ศรีแก้ว", "ค. พัฒนา พร้อมพัฒน์", "ง. สมศักดิ์ เทพสุทิน"], ans: 3 }, // แก้ไขเฉลยเป็น สมศักดิ์ เทพสุทิน
             { q: "3. หากพบผู้ประสบเหตุหมดสติ สิ่งแรกที่ควรทำคือข้อใด", options: ["ก. รีบนำส่งโรงพยาบาลทันที", "ข. โทรแจ้ง 1669 ทันที", "ค. เรียกให้คนอื่นช่วย", "ง. ประเมินความปลอดภัยของสถานที่"], ans: 3 },
             { q: "4. นักวิชาการสาธารณสุขลงพื้นที่ครั้งแรกและต้องการเห็นตำแหน่งบ้าน แหล่งน้ำ วัด โรงเรียน และกลุ่มเสี่ยง ควรใช้เครื่องมือใดก่อน", options: ["ก. แผนที่เดินดิน", "ข. ผังเครือญาติ", "ค. ปฏิทินชุมชน", "ง. ประวัติชีวิต"], ans: 0 },
             { q: "5. สำนักงานคณะกรรมการคุ้มครองผู้บริโภค (สคบ.) อยู่ภายใต้หน่วยงานใด", options: ["ก. กระทรวงสาธารณสุข", "ข. สำนักนายกรัฐมนตรี", "ค. กระทรวงมหาดไทย", "ง. กระทรวงพาณิชย์"], ans: 1 },
@@ -456,7 +446,6 @@
         let secondsElapsed = 0;
         let scoreChart = null;
 
-        // Initialize Page
         window.onload = function() {
             fetchLeaderboard();
         };
@@ -466,7 +455,6 @@
             document.getElementById(pageId).classList.add('active');
         }
 
-        // Timer Functions
         function startTimer() {
             secondsElapsed = 0;
             timerInterval = setInterval(() => {
@@ -485,7 +473,6 @@
             return `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
         }
 
-        // Start Quiz
         function startQuiz() {
             const nameInput = document.getElementById('username').value.trim();
             if (!nameInput) {
@@ -501,7 +488,6 @@
             loadQuestion();
         }
 
-        // Load Question Item
         function loadQuestion() {
             const q = questions[currentQuestion];
             document.getElementById('question-count').innerText = `ข้อที่ ${currentQuestion + 1} / ${questions.length}`;
@@ -545,7 +531,6 @@
             }
         }
 
-        // Submit Quiz
         function submitQuiz() {
             const timeFormatted = stopTimer();
             let score = 0;
@@ -555,21 +540,16 @@
                 }
             });
 
-            // Set result text
             document.getElementById('res-name').innerText = userName;
             document.getElementById('res-score').innerText = `${score} / ${questions.length}`;
             document.getElementById('res-time').innerText = `${timeFormatted} นาที`;
 
-            // Draw Chart
             renderChart(score, questions.length - score);
-
             showPage('page3');
 
-            // Send score to Apps Script Backend
             saveScore(userName, score, timeFormatted);
         }
 
-        // Render Pie Chart
         function renderChart(correct, wrong) {
             const ctx = document.getElementById('scoreChart').getContext('2d');
             if (scoreChart) scoreChart.destroy();
@@ -593,7 +573,6 @@
             });
         }
 
-        // Answer Key Page
         function goToAnswerKey() {
             const container = document.getElementById('answers-container');
             container.innerHTML = '';
@@ -622,9 +601,9 @@
             showPage('page1');
         }
 
-        // API Integration
+        // แก้ไขเงื่อนไขตรงนี้ ให้ยิง API ได้ตามปกติ
         function saveScore(name, score, timeSpent) {
-            if (!SCRIPT_URL || SCRIPT_URL.includes("https://script.google.com/macros/s/AKfycbzYPlODFoSmuRrEfnr72libaRUtFJK24CvkqOLUDNAyP2tgl5EcwJDxXGt89q-Xsclf/exec")) return;
+            if (!SCRIPT_URL) return;
 
             fetch(SCRIPT_URL, {
                 method: "POST",
@@ -636,8 +615,9 @@
             }).catch(err => console.error("Error saving score:", err));
         }
 
+        // แก้ไขเงื่อนไขตรงนี้
         function fetchLeaderboard() {
-            if (!SCRIPT_URL || SCRIPT_URL.includes("https://script.google.com/macros/s/AKfycbzYPlODFoSmuRrEfnr72libaRUtFJK24CvkqOLUDNAyP2tgl5EcwJDxXGt89q-Xsclf/exec")) {
+            if (!SCRIPT_URL) {
                 const dummy = "<tr><td colspan='4' style='text-align:center; color:#888;'>กรุณาตั้งค่า SCRIPT_URL เพื่อเปิดใช้ระบบสถิติออนไลน์</td></tr>";
                 document.getElementById('leaderboard-body').innerHTML = dummy;
                 document.getElementById('res-leaderboard-body').innerHTML = dummy;
@@ -648,7 +628,7 @@
                 .then(res => res.json())
                 .then(data => {
                     let html = '';
-                    if (data.length === 0) {
+                    if (!data || data.length === 0) {
                         html = `<tr><td colspan="4" style="text-align:center;">ยังไม่มีข้อมูลสถิติ</td></tr>`;
                     } else {
                         data.forEach((item, index) => {
@@ -671,7 +651,7 @@
         }
 
         function escapeHtml(str) {
-            return str.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+            return str ? str.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;") : "";
         }
     </script>
 </body>
