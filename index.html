@@ -4,436 +4,83 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>แบบทดสอบนักวิชาการสาธารณสุข สป.สธ.</title>
-    <!-- FontAwesome for icons -->
+    <!-- FontAwesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Google Fonts (Kanit) -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&display=swap">
-    <!-- Chart.js for Pie Chart -->
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Chart.js -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
         :root {
-            --primary: #0284c7;
-            --primary-dark: #0369a1;
-            --secondary: #10b981;
-            --accent: #f59e0b;
-            --bg-color: #f0f9ff;
-            --card-bg: #ffffff;
-            --text-color: #1e293b;
-            --text-muted: #64748b;
-            --border-color: #e2e8f0;
-            --shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.08), 0 8px 10px -6px rgba(0, 0, 0, 0.01);
-            --radius: 18px;
+            --primary: #00b4d8;
+            --primary-dark: #0077b6;
+            --secondary: #7209b7;
+            --accent: #ffb703;
+            --success: #2ec4b6;
+            --danger: #e63946;
+            --bg-gradient: linear-gradient(135deg, #e0f7fa 0%, #e8eaf6 100%);
+            --card-bg: rgba(255, 255, 255, 0.95);
+            --text-main: #2b2d42;
         }
 
         * {
             box-sizing: border-box;
+            font-family: 'Kanit', sans-serif;
             margin: 0;
             padding: 0;
-            font-family: 'Kanit', sans-serif;
         }
 
         body {
-            background: linear-gradient(135deg, #e0f2fe 0%, #f0fdf4 100%);
-            color: var(--text-color);
+            background: var(--bg-gradient);
             min-height: 100vh;
             display: flex;
             flex-direction: column;
-            align-items: center;
+            justify-content: space-between;
+            color: var(--text-main);
+            padding: 20px 10px;
         }
 
         .container {
+            max-width: 750px;
+            margin: 0 auto;
             width: 100%;
-            max-width: 800px;
-            padding: 20px;
-            flex: 1;
-        }
-
-        .card {
             background: var(--card-bg);
-            border-radius: var(--radius);
-            box-shadow: var(--shadow);
+            border-radius: 24px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
             padding: 30px;
-            margin-bottom: 25px;
-            border: 1px solid rgba(255, 255, 255, 0.8);
             backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.6);
             transition: all 0.3s ease;
         }
 
-        header, .header {
+        header {
             text-align: center;
             margin-bottom: 25px;
         }
 
-        .header-icon {
-            font-size: 3rem;
-            color: var(--primary);
-            margin-bottom: 10px;
-            animation: bounce 2s infinite;
-        }
-
-        @keyframes bounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-8px); }
-        }
-
-        h1 {
+        header h1 {
             color: var(--primary-dark);
             font-size: 1.8rem;
             font-weight: 700;
-            margin-bottom: 5px;
-        }
-
-        .subtitle {
-            color: var(--text-muted);
-            font-size: 0.95rem;
-        }
-
-        /* Form Controls */
-        .form-group {
-            margin-bottom: 20px;
-        }
-
-        label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 500;
-            color: var(--text-color);
-        }
-
-        input[type="text"] {
-            width: 100%;
-            padding: 14px 18px;
-            border: 2px solid var(--border-color);
-            border-radius: 12px;
-            font-size: 1rem;
-            transition: all 0.3s ease;
-            outline: none;
-        }
-
-        input[type="text"]:focus {
-            border-color: var(--primary);
-            box-shadow: 0 0 0 4px rgba(2, 132, 199, 0.15);
-        }
-
-        .btn {
-            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
-            color: white;
-            border: none;
-            padding: 14px 28px;
-            font-size: 1.1rem;
-            font-weight: 600;
-            border-radius: 12px;
-            cursor: pointer;
-            width: 100%;
-            transition: all 0.3s ease;
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 10px;
-            box-shadow: 0 4px 12px rgba(2, 132, 199, 0.3);
         }
 
-        .btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 18px rgba(2, 132, 199, 0.4);
-        }
-
-        .btn:active {
-            transform: translateY(0);
-        }
-
-        .btn-success {
-            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
-            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
-        }
-
-        .btn-success:hover {
-            box-shadow: 0 6px 18px rgba(16, 185, 129, 0.4);
-        }
-
-        .btn-outline {
-            background: transparent;
-            color: var(--primary);
-            border: 2px solid var(--primary);
-            box-shadow: none;
-        }
-
-        .btn-outline:hover {
-            background: rgba(2, 132, 199, 0.05);
-            transform: translateY(-2px);
-        }
-
-        /* Leaderboard */
-        .leaderboard-title {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-size: 1.2rem;
-            font-weight: 600;
-            color: var(--primary-dark);
-            margin-bottom: 15px;
-            border-bottom: 2px solid #f1f5f9;
-            padding-bottom: 10px;
-        }
-
-        .leaderboard-list {
-            list-style: none;
-        }
-
-        .leaderboard-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 12px 16px;
-            border-radius: 10px;
-            margin-bottom: 8px;
-            background: #f8fafc;
-            transition: transform 0.2s;
-        }
-
-        .leaderboard-item:hover {
-            transform: scale(1.01);
-        }
-
-        .leaderboard-item:nth-child(1) { background: #fef3c7; border-left: 4px solid #f59e0b; }
-        .leaderboard-item:nth-child(2) { background: #f1f5f9; border-left: 4px solid #94a3b8; }
-        .leaderboard-item:nth-child(3) { background: #ffedd5; border-left: 4px solid #d97706; }
-
-        .rank-badge {
-            width: 28px;
-            height: 28px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 700;
-            font-size: 0.9rem;
-        }
-
-        .player-info {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            flex: 1;
-            margin-left: 10px;
-        }
-
-        .player-score-time {
-            text-align: right;
-            font-weight: 600;
-        }
-
-        .player-score {
-            color: var(--primary-dark);
-        }
-
-        .player-time {
-            font-size: 0.8rem;
-            color: var(--text-muted);
-            font-weight: normal;
-        }
-
-        /* Quiz Controls */
-        .quiz-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 20px;
-            background: #f0f9ff;
-            padding: 12px 20px;
-            border-radius: 12px;
-        }
-
-        .timer-box {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font-weight: 600;
-            color: #e11d48;
-            font-size: 1.1rem;
-            background: #ffe4e6;
-            padding: 6px 14px;
-            border-radius: 20px;
-        }
-
-        .progress-bar-container {
-            width: 100%;
-            height: 8px;
-            background: #e2e8f0;
-            border-radius: 10px;
-            margin-bottom: 20px;
-            overflow: hidden;
-        }
-
-        .progress-bar {
-            height: 100%;
-            background: var(--primary);
-            width: 0%;
-            transition: width 0.3s ease;
-        }
-
-        .question-number {
-            font-size: 0.95rem;
-            color: var(--primary);
-            font-weight: 600;
-            margin-bottom: 8px;
-        }
-
-        .question-text {
-            font-size: 1.2rem;
-            font-weight: 600;
-            margin-bottom: 20px;
-            line-height: 1.5;
-        }
-
-        .options-grid {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-            margin-bottom: 25px;
-        }
-
-        .option-btn {
-            background: #ffffff;
-            border: 2px solid var(--border-color);
-            border-radius: 12px;
-            padding: 14px 18px;
-            text-align: left;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .option-btn:hover {
-            border-color: var(--primary);
-            background: #f0f9ff;
-        }
-
-        .option-btn.selected {
-            border-color: var(--primary);
-            background: #e0f2fe;
-            font-weight: 600;
-        }
-
-        .option-prefix {
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
-            background: #f1f5f9;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 600;
-            color: var(--text-muted);
-            flex-shrink: 0;
-        }
-
-        .option-btn.selected .option-prefix {
-            background: var(--primary);
-            color: white;
-        }
-
-        /* Result Styles */
-        .result-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-bottom: 25px;
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
-        }
-
-        .result-table th, .result-table td {
-            padding: 14px 18px;
-            text-align: left;
-        }
-
-        .result-table th {
-            background: var(--primary);
-            color: white;
-            font-weight: 600;
-        }
-
-        .result-table td {
-            background: #f8fafc;
-            border-bottom: 1px solid var(--border-color);
-        }
-
-        .chart-container {
-            width: 100%;
-            max-width: 280px;
-            margin: 0 auto 25px auto;
-        }
-
-        /* Solution Page Styles */
-        .solution-item {
-            background: #f8fafc;
-            border-radius: 12px;
-            padding: 18px;
-            margin-bottom: 15px;
-            border-left: 4px solid var(--border-color);
-        }
-
-        .solution-item.correct {
-            border-left-color: #10b981;
-            background: #f0fdf4;
-        }
-
-        .solution-item.incorrect {
-            border-left-color: #ef4444;
-            background: #fef2f2;
-        }
-
-        .solution-question {
-            font-weight: 600;
-            margin-bottom: 10px;
-        }
-
-        .solution-answer {
+        header p {
+            color: #6c757d;
             font-size: 0.95rem;
             margin-top: 5px;
         }
 
-        .correct-tag {
-            color: #10b981;
-            font-weight: 600;
-        }
-
-        .incorrect-tag {
-            color: #ef4444;
-            font-weight: 600;
-        }
-
-        /* Footer */
-        footer {
-            text-align: center;
-            padding: 20px;
-            color: var(--text-muted);
-            font-size: 0.9rem;
-            font-weight: 500;
-            width: 100%;
-            background: rgba(255, 255, 255, 0.6);
-            backdrop-filter: blur(5px);
-            margin-top: auto;
-            border-top: 1px solid rgba(0, 0, 0, 0.05);
-        }
-
-        .footer-brand {
-            color: var(--primary-dark);
-            font-weight: 600;
-        }
-
-        /* Page Management */
         .page {
             display: none;
+            animation: fadeIn 0.4s ease-in-out;
         }
 
         .page.active {
             display: block;
-            animation: fadeIn 0.4s ease;
         }
 
         @keyframes fadeIn {
@@ -441,10 +88,212 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
+        /* Form elements */
+        .input-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--primary-dark);
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 14px 20px;
+            border: 2px solid #e0e0e0;
+            border-radius: 12px;
+            font-size: 1rem;
+            outline: none;
+            transition: 0.3s;
+        }
+
+        input[type="text"]:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 4px rgba(0, 180, 216, 0.15);
+        }
+
+        .btn {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            border: none;
+            padding: 14px 28px;
+            border-radius: 12px;
+            font-size: 1.05rem;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            box-shadow: 0 4px 15px rgba(0, 180, 216, 0.3);
+            transition: 0.3s;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 180, 216, 0.4);
+        }
+
+        /* Leaderboard Table */
+        .leaderboard {
+            margin-top: 30px;
+            background: #f8f9fa;
+            border-radius: 16px;
+            padding: 20px;
+            border: 1px solid #e9ecef;
+        }
+
+        .leaderboard h3 {
+            color: var(--secondary);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 1.2rem;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.95rem;
+        }
+
+        th, td {
+            padding: 10px 12px;
+            text-align: left;
+            border-bottom: 1px solid #dee2e6;
+        }
+
+        th {
+            background-color: #eef2f7;
+            color: #495057;
+            font-weight: 600;
+        }
+
+        tr:nth-child(1) td:first-child { color: #ffb703; font-weight: bold; }
+        tr:nth-child(2) td:first-child { color: #adb5bd; font-weight: bold; }
+        tr:nth-child(3) td:first-child { color: #cd7f32; font-weight: bold; }
+
+        /* Timer Bar */
+        .quiz-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            background: #e0f7fa;
+            padding: 12px 20px;
+            border-radius: 12px;
+        }
+
+        .timer-box {
+            font-weight: 700;
+            color: var(--danger);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 1.1rem;
+        }
+
+        .question-number {
+            font-weight: 600;
+            color: var(--primary-dark);
+        }
+
+        .question-text {
+            font-size: 1.15rem;
+            font-weight: 500;
+            margin-bottom: 20px;
+            line-height: 1.5;
+        }
+
+        .options-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 25px;
+        }
+
+        .option-item {
+            background: #fff;
+            border: 2px solid #e9ecef;
+            border-radius: 12px;
+            padding: 14px 18px;
+            cursor: pointer;
+            transition: 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 1rem;
+        }
+
+        .option-item:hover {
+            border-color: var(--primary);
+            background: #f0fdfa;
+        }
+
+        .option-item.selected {
+            border-color: var(--primary-dark);
+            background: #e0f7fa;
+            font-weight: 500;
+        }
+
+        /* Result Summary */
+        .result-card {
+            text-align: center;
+            padding: 10px 0;
+        }
+
+        .summary-table {
+            margin: 20px 0;
+        }
+
+        .chart-container {
+            position: relative;
+            max-width: 250px;
+            margin: 20px auto;
+        }
+
+        /* Answer Key Sheet */
+        .answer-card {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 15px;
+            border-left: 5px solid #ccc;
+            text-align: left;
+        }
+
+        .answer-card.correct-card { border-left-color: var(--success); }
+        .answer-card.wrong-card { border-left-color: var(--danger); }
+
+        .answer-title {
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .user-ans { color: #495057; }
+        .correct-ans { color: var(--success); font-weight: 600; }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            margin-top: 25px;
+            padding: 15px 0 5px 0;
+            font-size: 0.9rem;
+            color: #6c757d;
+            font-weight: 500;
+            border-top: 1px solid rgba(0,0,0,0.05);
+        }
+
+        footer i { color: #e63946; }
+
         @media (max-width: 600px) {
-            .container { padding: 12px; }
-            .card { padding: 20px; }
-            h1 { font-size: 1.4rem; }
+            .container { padding: 20px; }
+            header h1 { font-size: 1.4rem; }
             .question-text { font-size: 1.05rem; }
         }
     </style>
@@ -452,774 +301,377 @@
 <body>
 
     <div class="container">
-        <!-- PAGE 1: หน้าแรก (กรอกชื่อ & สถิติ) -->
-        <div id="page-home" class="page active">
-            <div class="card">
-                <div class="header">
-                    <div class="header-icon"><i class="fa-solid fa-user-nurse"></i></div>
-                    <h1>แบบทดสอบนักวิชาการสาธารณสุข สป.สธ.</h1>
-                    <p class="subtitle">ระบบวัดความรู้พร้อมจับเวลา</p>
-                </div>
+        <!-- Header Dynamic Title -->
+        <header>
+            <h1><i class="fa-solid fa-notes-medical"></i> แบบทดสอบออนไลน์</h1>
+            <p>นักวิชาการสาธารณสุข สป.สธ.</p>
+        </header>
 
-                <div class="form-group" style="margin-top: 25px;">
-                    <label for="player-name"><i class="fa-solid fa-id-card"></i> กรอกชื่อเพื่อเริ่มทำข้อสอบ</label>
-                    <input type="text" id="player-name" placeholder="ระบุชื่อของคุณ..." autocomplete="off">
-                </div>
-
-                <button class="btn" id="start-btn" onclick="startQuiz()">
-                    <i class="fa-solid fa-play"></i> เริ่มทำแบบทดสอบ
-                </button>
+        <!-- หน้าแรก (หน้า 1): กรอกชื่อ + สถิติสูงสุด -->
+        <div id="page1" class="page active">
+            <div class="input-group">
+                <label for="username"><i class="fa-solid fa-user-pen"></i> กรอกชื่อก่อนเริ่มทำแบบทดสอบ:</label>
+                <input type="text" id="username" placeholder="ระบุชื่อของคุณที่นี่..." autocomplete="off">
             </div>
+            <button class="btn" onclick="startQuiz()"><i class="fa-solid fa-play"></i> เริ่มทำแบบทดสอบ</button>
 
-            <!-- สถิติสูงสุด 5 อันดับ -->
-            <div class="card">
-                <div class="leaderboard-title">
-                    <i class="fa-solid fa-trophy" style="color: #f59e0b;"></i>
-                    <span>สถิติคะแนนสูงสุด Top 5</span>
-                </div>
-                <ul class="leaderboard-list" id="leaderboard-list">
-                    <li style="text-align: center; color: var(--text-muted); padding: 15px;">
-                        <i class="fa-solid fa-spinner fa-spin"></i> กำลังโหลดข้อมูลสถิติ...
-                    </li>
-                </ul>
-            </div>
-        </div>
-
-        <!-- PAGE 2: หน้าทำแบบทดสอบ -->
-        <div id="page-quiz" class="page">
-            <div class="card">
-                <div class="quiz-header">
-                    <div style="font-weight: 600; color: var(--primary-dark);" id="quiz-user-display">
-                        <i class="fa-solid fa-user"></i> ผู้ทดสอบ: -
-                    </div>
-                    <div class="timer-box">
-                        <i class="fa-solid fa-stopwatch"></i>
-                        <span id="timer-text">00:00</span>
-                    </div>
-                </div>
-
-                <div class="progress-bar-container">
-                    <div class="progress-bar" id="progress-bar"></div>
-                </div>
-
-                <div class="question-number" id="question-number">ข้อที่ 1 / 30</div>
-                <div class="question-text" id="question-text">คำถามจะขึ้นตรงนี้</div>
-
-                <div class="options-grid" id="options-container">
-                    <!-- ตัวเลือกถูกสร้างจาก JS -->
-                </div>
-
-                <div style="display: flex; gap: 10px;">
-                    <button class="btn btn-outline" id="prev-btn" onclick="prevQuestion()" style="display: none;">
-                        <i class="fa-solid fa-arrow-left"></i> ย้อนกลับ
-                    </button>
-                    <button class="btn" id="next-btn" onclick="nextQuestion()" disabled>
-                        ถัดไป <i class="fa-solid fa-arrow-right"></i>
-                    </button>
-                </div>
-            </div>
-        </div>
-
-        <!-- PAGE 3: หน้าสรุปผลการสอบ -->
-        <div id="page-result" class="page">
-            <div class="card">
-                <div class="header">
-                    <div class="header-icon" style="color: #10b981;"><i class="fa-solid fa-circle-check"></i></div>
-                    <h1>ผลการทำแบบทดสอบ</h1>
-                    <p class="subtitle">สรุปคะแนนและเวลาที่ใช้ในการทดสอบ</p>
-                </div>
-
-                <table class="result-table">
-                    <tr>
-                        <th colspan="2" style="text-align: center;">สรุปรายการ</th>
-                    </tr>
-                    <tr>
-                        <td><strong><i class="fa-solid fa-user"></i> ชื่อผู้ทำแบบทดสอบ:</strong></td>
-                        <td id="res-name">-</td>
-                    </tr>
-                    <tr>
-                        <td><strong><i class="fa-solid fa-book"></i> ชุดแบบทดสอบ:</strong></td>
-                        <td>แบบทดสอบนักวิชาการสาธารณสุข สป.สธ.</td>
-                    </tr>
-                    <tr>
-                        <td><strong><i class="fa-solid fa-star"></i> คะแนนที่ได้:</strong></td>
-                        <td><span id="res-score" style="font-weight: 700; color: var(--primary); font-size: 1.2rem;">0</span> / 30 คะแนน</td>
-                    </tr>
-                    <tr>
-                        <td><strong><i class="fa-solid fa-clock"></i> เวลาที่ใช้ไป:</strong></td>
-                        <td id="res-time">00:00 นาที</td>
-                    </tr>
+            <div class="leaderboard">
+                <h3><i class="fa-solid fa-trophy"></i> สถิติคะแนนสูงสุด 5 อันดับแรก</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>อันดับ</th>
+                            <th>ชื่อผู้ทำแบบทดสอบ</th>
+                            <th>คะแนน (30)</th>
+                            <th>เวลาที่ใช้</th>
+                        </tr>
+                    </thead>
+                    <tbody id="leaderboard-body">
+                        <tr><td colspan="4" style="text-align:center;">กำลังโหลดข้อมูลสถิติ...</td></tr>
+                    </tbody>
                 </table>
+            </div>
+        </div>
 
-                <!-- แผนภูมิวงกลม -->
+        <!-- หน้า 2: แบบทดสอบทีละข้อ -->
+        <div id="page2" class="page">
+            <div class="quiz-header">
+                <div class="question-number" id="question-count">ข้อที่ 1 / 30</div>
+                <div class="timer-box"><i class="fa-regular fa-clock"></i> <span id="timer-display">00:00</span></div>
+            </div>
+
+            <div class="question-text" id="question-text">คำถามจะแสดงที่นี่</div>
+            <div class="options-list" id="options-container"></div>
+
+            <button class="btn" id="next-btn" onclick="nextQuestion()"><i class="fa-solid fa-arrow-right"></i> ข้อถัดไป</button>
+        </div>
+
+        <!-- หน้าสรุปผลหลังกดส่งคำตอบ -->
+        <div id="page3" class="page">
+            <div class="result-card">
+                <h2><i class="fa-solid fa-square-poll-vertical"></i> ผลการทำแบบทดสอบ</h2>
+                
+                <div class="summary-table">
+                    <table>
+                        <tr>
+                            <th>ชื่อผู้สอบ</th>
+                            <td id="res-name">-</td>
+                        </tr>
+                        <tr>
+                            <th>แบบทดสอบ</th>
+                            <td>นักวิชาการสาธารณสุข สป.สธ.</td>
+                        </tr>
+                        <tr>
+                            <th>คะแนนที่ได้</th>
+                            <td id="res-score" style="font-weight:bold; color:var(--primary-dark);">- / 30</td>
+                        </tr>
+                        <tr>
+                            <th>เวลาที่ใช้ไป</th>
+                            <td id="res-time">-</td>
+                        </tr>
+                    </table>
+                </div>
+
                 <div class="chart-container">
                     <canvas id="scoreChart"></canvas>
                 </div>
 
-                <!-- สถิติ Top 5 ท้ายผลสอบ -->
-                <div style="margin-top: 25px; margin-bottom: 25px;">
-                    <div class="leaderboard-title">
-                        <i class="fa-solid fa-trophy" style="color: #f59e0b;"></i>
-                        <span>ลำดับสถิติสูงสุด 5 อันดับ</span>
-                    </div>
-                    <ul class="leaderboard-list" id="result-leaderboard-list">
-                        <!-- โหลดด้วย JS -->
-                    </ul>
+                <div class="leaderboard" style="margin-bottom: 20px;">
+                    <h3><i class="fa-solid fa-ranking-star"></i> สถิติสูงสุด 5 อันดับล่าสุด</h3>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>อันดับ</th>
+                                <th>ชื่อ</th>
+                                <th>คะแนน</th>
+                                <th>เวลา</th>
+                            </tr>
+                        </thead>
+                        <tbody id="res-leaderboard-body">
+                            <tr><td colspan="4" style="text-align:center;">กำลังโหลด...</td></tr>
+                        </tbody>
+                    </table>
                 </div>
 
-                <button class="btn btn-success" onclick="showSolutionPage()">
-                    <i class="fa-solid fa-list-check"></i> กดดูเฉลยหน้าถัดไป
-                </button>
+                <button class="btn" onclick="goToAnswerKey()"><i class="fa-solid fa-file-lines"></i> กดดูเฉลยหน้าถัดไป</button>
             </div>
         </div>
 
-        <!-- PAGE 4: หน้าเฉลยแบบทดสอบ -->
-        <div id="page-solution" class="page">
-            <div class="card">
-                <div class="header">
-                    <div class="header-icon" style="color: var(--primary);"><i class="fa-solid fa-square-poll-vertical"></i></div>
-                    <h1>เฉลยแบบทดสอบ</h1>
-                    <p class="subtitle">ตรวจสอบคำตอบของคุณพร้อมเฉลยที่ถูกต้อง</p>
-                </div>
-
-                <div id="solution-container">
-                    <!-- รายการเฉลยสร้างด้วย JS -->
-                </div>
-
-                <button class="btn" onclick="restartQuiz()" style="margin-top: 20px;">
-                    <i class="fa-solid fa-rotate-right"></i> กลับไปหน้าแรกเพื่อทำใหม่
-                </button>
-            </div>
+        <!-- หน้า 4: เฉลยแบบทดสอบ -->
+        <div id="page4" class="page">
+            <h2><i class="fa-solid fa-book-open"></i> เฉลยแบบทดสอบ</h2>
+            <p style="margin-bottom: 20px; color:#6c757d;">ทบทวนข้อที่ทำถูกและข้อที่ทำผิดเพื่อการเตรียมตัวสอบที่ดีขึ้น</p>
+            <div id="answers-container"></div>
+            <button class="btn" onclick="restartQuiz()" style="margin-top: 20px;"><i class="fa-solid fa-rotate-right"></i> กลับไปหน้าแรก</button>
         </div>
+
+        <!-- Footer ทุกหน้า -->
+        <footer>
+            เพจ : เตรียมสอบนักวิชาการสาธารณสุข By Studybrownn
+        </footer>
     </div>
 
-    <!-- Footer -->
-    <footer>
-        <i class="fa-solid fa-heart" style="color: #ef4444;"></i> เพจ : <span class="footer-brand">เตรียมสอบนักวิชาการสาธารณสุข By Studybrownn</span>
-    </footer>
-
     <script>
-        // ==========================================
-        // 1. ตั้งค่า URL ของ Google Apps Script (ถ้ามี)
-        // ==========================================
-        const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbw_3J8FMwYyTmy26nCoi3-u7kE7sqbXvZ1RpFp52-OCm8q19bNo9i9GZsQsCCdK1mPo/exec"; 
+        // *** วาง URL ที่ได้จากการ Deploy Google Apps Script ตรงนี้ ***
+        const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzYPlODFoSmuRrEfnr72libaRUtFJK24CvkqOLUDNAyP2tgl5EcwJDxXGt89q-Xsclf/exec";
 
-        // ==========================================
-        // 2. ข้อมูลข้อสอบ 30 ข้อ
-        // ==========================================
-        const quizData = [
-            {
-                q: "1. ข้อใดคือ พันธกิจ ของกระทรวงสาธารณสุข",
-                options: [
-                    "ก. ประชาชนสุขภาพดี เจ้าหน้าที่มีความสุข ระบบสุขภาพยั่งยืน",
-                    "ข. พัฒนาและอธิบาลระบบสุขภาพ อย่างมีส่วนร่วม และยั่งยืน",
-                    "ค. อภิบาลระบบบริการสุขภาพให้ได้มาตรฐานสากล โดยการมีส่วนร่วมของทุกภาคส่วนอย่างต่อเนื่อง",
-                    "ง. เป็นองค์กรหลักด้านสุขภาพ ที่รวมพลังเพื่อประชาชนสุขภาพดี"
-                ],
-                ans: 1
-            },
-            {
-                q: "2. ใครเป็นรัฐมนตรีว่าการกระทรวงสาธารณสุข",
-                options: [
-                    "ก. อนุทิน ชาญวีรกูล",
-                    "ข. ชลน่าน ศรีแก้ว",
-                    "ค. พัฒนา พร้อมพัฒน์",
-                    "ง. สมศักดิ์ เทพสุทิน"
-                ],
-                ans: 2
-            },
-            {
-                q: "3. หากพบผู้ประสบเหตุหมดสติ สิ่งแรกที่ควรทำคือข้อใด",
-                options: [
-                    "ก. รีบนำส่งโรงพยาบาลทันที",
-                    "ข. โทรแจ้ง 1669 ทันที",
-                    "ค. เรียกให้คนอื่นช่วย",
-                    "ง. ประเมินความปลอดภัยของสถานที่"
-                ],
-                ans: 3
-            },
-            {
-                q: "4. นักวิชาการสาธารณสุขลงพื้นที่ครั้งแรกและต้องการเห็นตำแหน่งบ้าน แหล่งน้ำ วัด โรงเรียน และกลุ่มเสี่ยง ควรใช้เครื่องมือใดก่อน",
-                options: [
-                    "ก. แผนที่เดินดิน",
-                    "ข. ผังเครือญาติ",
-                    "ค. ปฏิทินชุมชน",
-                    "ง. ประวัติชีวิต"
-                ],
-                ans: 0
-            },
-            {
-                q: "5. สำนักงานคณะกรรมการคุ้มครองผู้บริโภค (สคบ.) อยู่ภายใต้หน่วยงานใด",
-                options: [
-                    "ก. กระทรวงสาธารณสุข",
-                    "ข. สำนักนายกรัฐมนตรี",
-                    "ค. กระทรวงมหาดไทย",
-                    "ง. กระทรวงพาณิชย์"
-                ],
-                ans: 1
-            },
-            {
-                q: "6. ผู้ป่วยที่สงสัยว่าเป็นโรคในข้อใด ห้าม ใช้ยาไอบูโพรเฟน (Ibuprofen) ในการลดไข้เด็ดขาด",
-                options: [
-                    "ก. โรคไข้หวัด",
-                    "ข. โรคไข้ข้ออักเสบ",
-                    "ค. โรคไข้หวัดใหญ่",
-                    "ง. โรคไข้เลือดออก"
-                ],
-                ans: 3
-            },
-            {
-                q: "7. โรคในข้อใดที่สามารถป้องกันได้ด้วยการฉีดวัคซีน",
-                options: [
-                    "ก. โรคเอดส์ (AIDS)",
-                    "ข. โรคบาดทะยัก (Tetanus)",
-                    "ค. โรคไข้ฉี่หนู (Leptospirosis)",
-                    "ง. โรคพยาธิใบไม้ในตับ (Liver Fluke)"
-                ],
-                ans: 1
-            },
-            {
-                q: "8. การประเมินผลกระทบสิ่งแวดล้อม (EIA) นำมาใช้เพื่อวัตถุประสงค์ใดเป็นหลัก",
-                options: [
-                    "ก. ประเมินความคุ้มค่าทางเศรษฐศาสตร์ของโครงการ",
-                    "ข. คาดการณ์ผลกระทบต่อสิ่งแวดล้อมและสุขภาพก่อนเริ่มโครงการเพื่อหาทางป้องกัน",
-                    "ค. ตรวจสอบการปล่อยมลพิษของโรงงานที่เปิดดำเนินการแล้ว",
-                    "ง. จัดทำฐานข้อมูลทรัพยากรธรรมชาติของประเทศ"
-                ],
-                ans: 1
-            },
-            {
-                q: "9. โครงสร้างประชากรที่มีลักษณะ \"พีระมิดฐานแคบ\" สะท้อนให้เห็นถึงแนวโน้มหรือปัญหาใดในอนาคต",
-                options: [
-                    "ก. ประชากรวัยเด็กมีจำนวนมากเกินไป",
-                    "ข. อัตราการเกิดสูงและอัตราการตายสูง",
-                    "ค. ภาวะขาดแคลนแรงงานและก้าวเข้าสู่สังคมผู้สูงอายุ",
-                    "ง. มีประชากรวัยแรงงานอพยพเข้ามามาก"
-                ],
-                ans: 2
-            },
-            {
-                q: "10. สถิติ Odds Ratio (OR) มักถูกนำมาใช้เพื่อหาความสัมพันธ์ของปัจจัยเสี่ยงกับการเกิดโรคในรูปแบบการศึกษาระบาดวิทยาข้อใดมากที่สุด",
-                options: [
-                    "ก. Cross-sectional study",
-                    "ข. Cohort study",
-                    "ค. Case-control study",
-                    "ง. Randomized Controlled Trial (RCT)"
-                ],
-                ans: 2
-            },
-            {
-                q: "11. ข้อใดจัดเป็น \"ข้อมูลเชิงปริมาณ\"",
-                options: [
-                    "ก. เพศชาย",
-                    "ข. ส่วนสูง 165 เซนติเมตร",
-                    "ค. กรุ๊ปเลือด O",
-                    "ง. ศาสนาพุทธ"
-                ],
-                ans: 1
-            },
-            {
-                q: "12. โรงงานผลิตข้าวสารในประเทศไทย แต่ติดฉลากว่า \"นำเข้าจากประเทศญี่ปุ่น\" เพื่อเพิ่มยอดขาย การกระทำดังกล่าวเข้าลักษณะข้อใด",
-                options: [
-                    "ก. อาหารผิดมาตรฐาน",
-                    "ข. อาหารไม่บริสุทธิ์",
-                    "ค. อาหารควบคุมเฉพาะ",
-                    "ง. อาหารปลอม"
-                ],
-                ans: 3
-            },
-            {
-                q: "13. ระบบ Health Data Center (HDC) ของกระทรวงสาธารณสุขจัดอยู่ในระบบใด",
-                options: [
-                    "ก. ระบบข้อมูลบริการสุขภาพ",
-                    "ข. ระบบข้อมูลข่าวสารสถิติสาธารณสุข",
-                    "ค. ระบบข้อมูลตัวชี้วัดสุขภาพของประเทศ",
-                    "ง. ระบบข้อมูลสถานะสุขภาพ"
-                ],
-                ans: 2
-            },
-            {
-                q: "14. ข้อใดเป็นลำดับการดำเนินงานที่ถูกต้องของกระบวนการวินิจฉัยชุมชน",
-                options: [
-                    "ก. เตรียมชุมชน → ประเมินภาวะชุมชน → ศึกษาสาเหตุของปัญหา → วางแผนแก้ไข → ดำเนินการตามแผน → ประเมินผล",
-                    "ข. เตรียมชุมชน → ศึกษาสาเหตุ → ประเมินภาวะชุมชน → วางแผน → ดำเนินการ → ประเมินผล",
-                    "ค. ประเมินภาวะชุมชน → เตรียมชุมชน → ศึกษาสาเหตุ → วางแผน → ดำเนินการ → ประเมินผล",
-                    "ง. เตรียมชุมชน → ประเมินภาวะชุมชน → วางแผน → ศึกษาสาเหตุ → ดำเนินการ → ประเมินผล"
-                ],
-                ans: 0
-            },
-            {
-                q: "15. พ.ร.บ.คุ้มครองผู้บริโภค ปัจจุบันฉบับที่ เท่าใด",
-                options: [
-                    "ก. ฉบับที่ 1 พ.ศ.2522",
-                    "ข. ฉบับที่ 2 พ.ศ.2541",
-                    "ค. ฉบับที่ 3 พ.ศ.2556",
-                    "ง. ฉบับที่ 4 พ.ศ.2562"
-                ],
-                ans: 3
-            },
-            {
-                q: "16. การที่นักวิชาการสาธารณสุขในโรงพยาบาลชุมชน รวบรวมข้อมูลการติดเชื้อ HIV จากกลุ่มผู้ใช้ยาเสพติดที่มารับบริการในสถานพยาบาลตามระบบปกติ จัดเป็นการเฝ้าระวังประเภทใด",
-                options: [
-                    "ก. การเฝ้าระวังเชิงรุก (Active Surveillance)",
-                    "ข. การเฝ้าระวังเชิงรับ (Passive Surveillance)",
-                    "ค. การเฝ้าระวังเฉพาะพื้นที่เฉพาะกลุ่ม (Sentinel Surveillance)",
-                    "ง. การเฝ้าระวังเหตุการณ์ (Event-based Surveillance)"
-                ],
-                ans: 1
-            },
-            {
-                q: "17. อสม. สำรวจภาชนะใน 6 ครัวเรือน พบภาชนะทั้งหมด 20 ชิ้น พบลูกน้ำยุงลายในภาชนะ 12 ชิ้น จงคำนวณหาค่า CI (Container Index)",
-                options: [
-                    "ก. 12",
-                    "ข. 20",
-                    "ค. 50",
-                    "ง. 60"
-                ],
-                ans: 3
-            },
-            {
-                q: "18. การระบาดของโรคแบบใดที่แพร่กระจายไปทั่วโลก ข้ามทวีป",
-                options: [
-                    "ก. Sporadic",
-                    "ข. Endemic",
-                    "ค. Epidemic",
-                    "ง. Pandemic"
-                ],
-                ans: 3
-            },
-            {
-                q: "19. Cronbach’s Alpha ใช้วัดสิ่งใด",
-                options: [
-                    "ก. ความตรงเชิงเนื้อหา",
-                    "ข. ความเชื่อมั่นภายใน",
-                    "ค. ความตรงเชิงเกณฑ์",
-                    "ง. ความตรงเชิงหน้า"
-                ],
-                ans: 1
-            },
-            {
-                q: "20. การศึกษาความชุกของโรคเบาหวานในประชาชนจังหวัดหนึ่ง ณ เดือนมิถุนายน 2569 เป็นการวิจัยแบบใด",
-                options: [
-                    "ก. Prospective Study",
-                    "ข. Retrospective Study",
-                    "ค. Cross-sectional Study",
-                    "ง. Experimental Study"
-                ],
-                ans: 2
-            },
-            {
-                q: "21. ข้อใดจับคู่ได้ถูกต้อง",
-                options: [
-                    "ก. ความรู้ = ปัจจัยเสริม",
-                    "ข. กำลังใจ = ปัจจัยเอื้อ",
-                    "ค. สนามกีฬา = ปัจจัยนำ",
-                    "ง. ความเชื่อ = ปัจจัยนำ"
-                ],
-                ans: 3
-            },
-            {
-                q: "22. ค่าคลอรีนอิสระคงเหลือในสถานการณ์โรคระบาดควรอยู่ที่เท่าใด",
-                options: [
-                    "ก. 0.2−0.5 มิลลิกรัม/ลิตร",
-                    "ข. 1.0−2.0 มิลลิกรัม/ลิตร",
-                    "ค. 0.5−1.0 มิลลิกรัม/ลิตร",
-                    "ง. 0.1−0.2 มิลลิกรัม/ลิตร"
-                ],
-                ans: 2
-            },
-            {
-                q: "23. ประชากรต้นปี 950,000 คน ประชากรสิ้นปี 970,000 คน ประชากรกลางปีมีค่าเท่าใด",
-                options: [
-                    "ก. 955,000 คน",
-                    "ข. 960,000 คน",
-                    "ค. 965,000 คน",
-                    "ง. 970,000 คน"
-                ],
-                ans: 1
-            },
-            {
-                q: "24. ข้อใดเป็นเกณฑ์ \"เริ่มเข้าสู่\" สังคมผู้สูงอายุ (Aging Society)",
-                options: [
-                    "ก. ประชากรอายุ 60 ปีขึ้นไป ≥ 10%",
-                    "ข. ประชากรอายุ 65 ปีขึ้นไป ≥ 5%",
-                    "ค. ประชากรอายุ 65 ปีขึ้นไป ≥ 10%",
-                    "ง. ประชากรอายุ 60 ปีขึ้นไป ≥ 20%"
-                ],
-                ans: 0
-            },
-            {
-                q: "25. ข้อใดอธิบายความหมายของค่า BOD (Biochemical Oxygen Demand) ได้ถูกต้องที่สุด",
-                options: [
-                    "ก. ปริมาณออกซิเจนที่ละลายในน้ำ",
-                    "ข. ปริมาณออกซิเจนที่จุลินทรีย์ใช้ย่อยสลายสารอินทรีย์ในน้ำ",
-                    "ค. ปริมาณคาร์บอนไดออกไซด์ที่ละลายในน้ำ",
-                    "ง. ปริมาณสารแขวนลอยในน้ำ"
-                ],
-                ans: 1
-            },
-            {
-                q: "26. โดยทั่วไปหากมีการละเมิดข้อมูลส่วนบุคคล ผู้ควบคุมข้อมูลมีหน้าที่แจ้งเหตุการละเมิดดังกล่าวแก่สำนักงานคณะกรรมการคุ้มครองข้อมูลส่วนบุคคล (สคส.) ภายในกำหนดเวลาใด",
-                options: [
-                    "ก. 24 ชั่วโมง",
-                    "ข. 48 ชั่วโมง",
-                    "ค. 72 ชั่วโมง",
-                    "ง. 7 วัน"
-                ],
-                ans: 2
-            },
-            {
-                q: "27. ความคุ้มค่าในการใช้ทรัพยากร หมายถึงองค์ประกอบใดคุ้มค่า เป็นการประเมินองค์ประกอบใด",
-                options: [
-                    "ก. Efficiency",
-                    "ข. Effectiveness",
-                    "ค. Adequacy",
-                    "ง. Progress"
-                ],
-                ans: 0
-            },
-            {
-                q: "28. ข้อใดคือ แผนงานที่หน่วยงานต้องทำเป็นประจำทุกปี",
-                options: [
-                    "ก. แผนพัฒนาระยะสั้น",
-                    "ข. แผนพัฒนาระยะกลาง",
-                    "ค. แผนพัฒนาระยะยาว",
-                    "ง. แผนปฏิบัติการ"
-                ],
-                ans: 3
-            },
-            {
-                q: "29. โรคไข้เลือดออกพบบ่อยและมีการระบาดเป็นประจำตามฤดูกาลในประเทศไทยทุกปี โดยมีจำนวนผู้ป่วยคงที่สม่ำเสมอตามคาดการณ์ จัดเป็นการระบาดแบบใด",
-                options: [
-                    "ก. Endemic",
-                    "ข. Epidemic",
-                    "ค. Pandemic",
-                    "ง. Sporadic"
-                ],
-                ans: 0
-            },
-            {
-                q: "30. การฉีดวันซีนป้องกันโรคไข้สมองอักเสบเจอี เป็นการป้องกันการเกิดโรคระดับใด",
-                options: [
-                    "ก. ระดับก่อนปฐมภูมิ (Primordial Prevention)",
-                    "ข. ระดับปฐมภูมิ (Primary Prevention)",
-                    "ค. ระดับทุติยภูมิ (Secondary Prevention)",
-                    "ง. ระดับตติยภูมิ (Tertiary Prevention)"
-                ],
-                ans: 1
-            }
+        // ข้อสอบ 30 ข้อ
+        const questions = [
+            { q: "1. ข้อใดคือ พันธกิจ ของกระทรวงสาธารณสุข", options: ["ก. ประชาชนสุขภาพดี เจ้าหน้าที่มีความสุข ระบบสุขภาพยั่งยืน", "ข. พัฒนาและอภิบาลระบบสุขภาพ อย่างมีส่วนร่วม และยั่งยืน", "ค. อภิบาลระบบบริการสุขภาพให้ได้มาตรฐานสากล โดยการมีส่วนร่วมของทุกภาคส่วนอย่างต่อเนื่อง", "ง. เป็นองค์กรหลักด้านสุขภาพ ที่รวมพลังเพื่อประชาชนสุขภาพดี"], ans: 1 },
+            { q: "2. ใครเป็นรัฐมนตรีว่าการกระทรวงสาธารณสุข", options: ["ก. อนุทิน ชาญวีรกูล", "ข. ชลน่าน ศรีแก้ว", "ค. พัฒนา พร้อมพัฒน์", "ง. สมศักดิ์ เทพสุทิน"], ans: 2 },
+            { q: "3. หากพบผู้ประสบเหตุหมดสติ สิ่งแรกที่ควรทำคือข้อใด", options: ["ก. รีบนำส่งโรงพยาบาลทันที", "ข. โทรแจ้ง 1669 ทันที", "ค. เรียกให้คนอื่นช่วย", "ง. ประเมินความปลอดภัยของสถานที่"], ans: 3 },
+            { q: "4. นักวิชาการสาธารณสุขลงพื้นที่ครั้งแรกและต้องการเห็นตำแหน่งบ้าน แหล่งน้ำ วัด โรงเรียน และกลุ่มเสี่ยง ควรใช้เครื่องมือใดก่อน", options: ["ก. แผนที่เดินดิน", "ข. ผังเครือญาติ", "ค. ปฏิทินชุมชน", "ง. ประวัติชีวิต"], ans: 0 },
+            { q: "5. สำนักงานคณะกรรมการคุ้มครองผู้บริโภค (สคบ.) อยู่ภายใต้หน่วยงานใด", options: ["ก. กระทรวงสาธารณสุข", "ข. สำนักนายกรัฐมนตรี", "ค. กระทรวงมหาดไทย", "ง. กระทรวงพาณิชย์"], ans: 1 },
+            { q: "6. ผู้ป่วยที่สงสัยว่าเป็นโรคในข้อใด ห้าม ใช้ยาไอบูโพรเฟน (Ibuprofen) ในการลดไข้เด็ดขาด", options: ["ก. โรคไข้หวัด", "ข. โรคไข้ข้ออักเสบ", "ค. โรคไข้หวัดใหญ่", "ง. โรคไข้เลือดออก"], ans: 3 },
+            { q: "7. โรคในข้อใดที่สามารถป้องกันได้ด้วยการฉีดวัคซีน", options: ["ก. โรคเอดส์ (AIDS)", "ข. โรคบาดทะยัก (Tetanus)", "ค. โรคไข้ฉี่หนู (Leptospirosis)", "ง. โรคพยาธิใบไม้ในตับ (Liver Fluke)"], ans: 1 },
+            { q: "8. การประเมินผลกระทบสิ่งแวดล้อม (EIA) นำมาใช้เพื่อวัตถุประสงค์ใดเป็นหลัก", options: ["ก. ประเมินความคุ้มค่าทางเศรษฐศาสตร์ของโครงการ", "ข. คาดการณ์ผลกระทบต่อสิ่งแวดล้อมและสุขภาพก่อนเริ่มโครงการเพื่อหาทางป้องกัน", "ค. ตรวจสอบการปล่อยมลพิษของโรงงานที่เปิดดำเนินการแล้ว", "ง. จัดทำฐานข้อมูลทรัพยากรธรรมชาติของประเทศ"], ans: 1 },
+            { q: "9. โครงสร้างประชากรที่มีลักษณะ \"พีระมิดฐานแคบ\" สะท้อนให้เห็นถึงแนวโน้มหรือปัญหาใดในอนาคต", options: ["ก. ประชากรวัยเด็กมีจำนวนมากเกินไป", "ข. อัตราการเกิดสูงและอัตราการตายสูง", "ค. ภาวะขาดแคลนแรงงานและก้าวเข้าสู่สังคมผู้สูงอายุ", "ง. มีประชากรวัยแรงงานอพยพเข้ามามาก"], ans: 2 },
+            { q: "10. สถิติ Odds Ratio (OR) มักถูกนำมาใช้เพื่อหาความสัมพันธ์ของปัจจัยเสี่ยงกับการเกิดโรคในรูปแบบการศึกษาระบาดวิทยาข้อใดมากที่สุด", options: ["ก. Cross-sectional study", "ข. Cohort study", "ค. Case-control study", "ง. Randomized Controlled Trial (RCT)"], ans: 2 },
+            { q: "11. ข้อใดจัดเป็น \"ข้อมูลเชิงปริมาณ\"", options: ["ก. เพศชาย", "ข. ส่วนสูง 165 เซนติเมตร", "ค. กรุ๊ปเลือด O", "ง. ศาสนาพุทธ"], ans: 1 },
+            { q: "12. โรงงานผลิตข้าวสารในประเทศไทย แต่ติดฉลากว่า \"นำเข้าจากประเทศญี่ปุ่น\" เพื่อเพิ่มยอดขาย การกระทำดังกล่าวเข้าลักษณะข้อใด", options: ["ก. อาหารผิดมาตรฐาน", "ข. อาหารไม่บริสุทธิ์", "ค. อาหารควบคุมเฉพาะ", "ง. อาหารปลอม"], ans: 3 },
+            { q: "13. ระบบ Health Data Center (HDC) ของกระทรวงสาธารณสุขจัดอยู่ในระบบใด", options: ["ก. ระบบข้อมูลบริการสุขภาพ", "ข. ระบบข้อมูลข่าวสารสถิติสาธารณสุข", "ค. ระบบข้อมูลตัวชี้วัดสุขภาพของประเทศ", "ง. ระบบข้อมูลสถานะสุขภาพ"], ans: 2 },
+            { q: "14. ข้อใดเป็นลำดับการดำเนินงานที่ถูกต้องของกระบวนการวินิจฉัยชุมชน", options: ["ก. เตรียมชุมชน → ประเมินภาวะชุมชน → ศึกษาสาเหตุของปัญหา → วางแผนแก้ไข → ดำเนินการตามแผน → ประเมินผล", "ข. เตรียมชุมชน → ศึกษาสาเหตุ → ประเมินภาวะชุมชน → วางแผน → ดำเนินการ → ประเมินผล", "ค. ประเมินภาวะชุมชน → เตรียมชุมชน → ศึกษาสาเหตุ → วางแผน → ดำเนินการ→ ประเมินผล", "ง. เตรียมชุมชน → ประเมินภาวะชุมชน → วางแผน → ศึกษาสาเหตุ → ดำเนินการ → ประเมินผล"], ans: 0 },
+            { q: "15. พ.ร.บ.คุ้มครองผู้บริโภค ปัจจุบันฉบับที่ เท่าใด", options: ["ก. ฉบับที่ 1 พ.ศ.2522", "ข. ฉบับที่ 2 พ.ศ.2541", "ค. ฉบับที่ 3 พ.ศ.2556", "ง. ฉบับที่ 4 พ.ศ.2562"], ans: 3 },
+            { q: "16. การที่นักวิชาการสาธารณสุขในโรงพยาบาลชุมชน รวบรวมข้อมูลการติดเชื้อ HIV จากกลุ่มผู้ใช้ยาเสพติดที่มารับบริการในสถานพยาบาลตามระบบปกติ จัดเป็นการเฝ้าระวังประเภทใด", options: ["ก. การเฝ้าระวังเชิงรุก (Active Surveillance)", "ข. การเฝ้าระวังเชิงรับ (Passive Surveillance)", "ค. การเฝ้าระวังเฉพาะพื้นที่เฉพาะกลุ่ม (Sentinel Surveillance)", "ง. การเฝ้าระวังเหตุการณ์ (Event-based Surveillance)"], ans: 1 },
+            { q: "17. อสม. สำรวจภาชนะใน 6 ครัวเรือน พบภาชนะทั้งหมด 20 ชิ้น พบลูกน้ำยุงลายในภาชนะ 12 ชิ้น จงคำนวณหาค่า CI (Container Index)", options: ["ก. 12", "ข. 20", "ค. 50", "ง. 60"], ans: 3 },
+            { q: "18. การระบาดของโรคแบบใดที่แพร่กระจายไปทั่วโลก ข้ามทวีป", options: ["ก. Sporadic", "ข. Endemic", "ค. Epidemic", "ง. Pandemic"], ans: 3 },
+            { q: "19. Cronbach’s Alpha ใช้วัดสิ่งใด", options: ["ก. ความตรงเชิงเนื้อหา", "ข. ความเชื่อมั่นภายใน", "ค. ความตรงเชิงเกณฑ์", "ง. ความตรงเชิงหน้า"], ans: 1 },
+            { q: "20. การศึกษาความชุกของโรคเบาหวานในประชาชนจังหวัดหนึ่ง ณ เดือนมิถุนายน 2569 เป็นการวิจัยแบบใด", options: ["ก. Prospective Study", "ข. Retrospective Study", "ค. Cross-sectional Study", "ง. Experimental Study"], ans: 2 },
+            { q: "21. ข้อใดจับคู่ได้ถูกต้อง", options: ["ก. ความรู้ = ปัจจัยเสริม", "ข. กำลังใจ = ปัจจัยเอื้อ", "ค. สนามกีฬา = ปัจจัยนำ", "ง. ความเชื่อ = ปัจจัยนำ"], ans: 3 },
+            { q: "22. ค่าคลอรีนอิสระคงเหลือในสถานการณ์โรคระบาดควรอยู่ที่เท่าใด", options: ["ก. 0.2−0.5 มิลลิกรัม/ลิตร", "ข. 1.0−2.0 มิลลิกรัม/ลิตร", "ค. 0.5−1.0 มิลลิกรัม/ลิตร", "ง. 0.1−0.2 มิลลิกรัม/ลิตร"], ans: 2 },
+            { q: "23. ประชากรต้นปี 950,000 คน ประชากรสิ้นปี 970,000 คน ประชากรกลางปีมีค่าเท่าใด", options: ["ก. 955,000 คน", "ข. 960,000 คน", "ค. 965,000 คน", "ง. 970,000 คน"], ans: 1 },
+            { q: "24. ข้อใดเป็นเกณฑ์ \"เริ่มเข้าสู่\" สังคมผู้สูงอายุ (Aging Society)", options: ["ก. ประชากรอายุ 60 ปีขึ้นไป ≥ 10%", "ข. ประชากรอายุ 65 ปีขึ้นไป ≥ 5%", "ค. ประชากรอายุ 65 ปีขึ้นไป ≥ 10%", "ง. ประชากรอายุ 60 ปีขึ้นไป ≥ 20%"], ans: 0 },
+            { q: "25. ข้อใดอธิบายความหมายของค่า BOD (Biochemical Oxygen Demand) ได้ถูกต้องที่สุด", options: ["ก. ปริมาณออกซิเจนที่ละลายในน้ำ", "ข. ปริมาณออกซิเจนที่จุลินทรีย์ใช้ย่อยสลายสารอินทรีย์ในน้ำ", "ค. ปริมาณคาร์บอนไดออกไซด์ที่ละลายในน้ำ", "ง. ปริมาณสารแขวนลอยในน้ำ"], ans: 1 },
+            { q: "26. โดยทั่วไปหากมีการละเมิดข้อมูลส่วนบุคคล ผู้ควบคุมข้อมูลมีหน้าที่แจ้งเหตุการละเมิดดังกล่าวแก่สำนักงานคณะกรรมการคุ้มครองข้อมูลส่วนบุคคล (สคส.) ภายในกำหนดเวลาใด", options: ["ก. 24 ชั่วโมง", "ข. 48 ชั่วโมง", "ค. 72 ชั่วโมง", "ง. 7 วัน"], ans: 2 },
+            { q: "27. ความคุ้มค่าในการใช้ทรัพยากร หมายถึงองค์ประกอบใดคุ้มค่า เป็นการประเมินองค์ประกอบใด", options: ["ก. Efficiency", "ข. Effectiveness", "ค. Adequacy", "ง. Progress"], ans: 0 },
+            { q: "28. ข้อใดคือ แผนงานที่หน่วยงานต้องทำเป็นประจำทุกปี", options: ["ก. แผนพัฒนาระยะสั้น", "ข. แผนพัฒนาระยะกลาง", "ค. แผนพัฒนาระยะยาว", "ง. แผนปฏิบัติการ"], ans: 3 },
+            { q: "29. โรคไข้เลือดออกพบบ่อยและมีการระบาดเป็นประจำตามฤดูกาลในประเทศไทยทุกปี โดยมีจำนวนผู้ป่วยคงที่สม่ำเสมอตามคาดการณ์ จัดเป็นการระบาดแบบใด", options: ["ก. Endemic", "ข. Epidemic", "ค. Pandemic", "ง. Sporadic"], ans: 0 },
+            { q: "30. การฉีดวันซีนป้องกันโรคไข้สมองอักเสบเจอี เป็นการป้องกันการเกิดโรคระดับใด", options: ["ก. ระดับก่อนปฐมภูมิ (Primordial Prevention)", "ข. ระดับปฐมภูมิ (Primary Prevention)", "ค. ระดับทุติยภูมิ (Secondary Prevention)", "ง. ระดับตติยภูมิ (Tertiary Prevention)"], ans: 1 }
         ];
 
-        // Global Variables
         let currentQuestion = 0;
-        let userAnswers = new Array(quizData.length).fill(null);
+        let userAnswers = new Array(questions.length).fill(null);
         let userName = "";
         let timerInterval = null;
         let secondsElapsed = 0;
-        let scoreChartInstance = null;
+        let scoreChart = null;
 
-        // Local storage backup for top scores
-        let localTopScores = JSON.parse(localStorage.getItem('std_top_scores') || '[]');
-
-        // Init App
+        // Initialize Page
         window.onload = function() {
             fetchLeaderboard();
         };
 
-        // Navigation
         function showPage(pageId) {
             document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
             document.getElementById(pageId).classList.add('active');
-            window.scrollTo(0, 0);
         }
 
-        // Leaderboard Fetching
-        function fetchLeaderboard() {
-            const listElement = document.getElementById('leaderboard-list');
-            const resListElement = document.getElementById('result-leaderboard-list');
-            
-            if(!SCRIPT_URL || SCRIPT_URL.includes("https://script.google.com/macros/s/AKfycbw_3J8FMwYyTmy26nCoi3-u7kE7sqbXvZ1RpFp52-OCm8q19bNo9i9GZsQsCCdK1mPo/exec")) {
-                // Use LocalStorage as fallback if Apps Script URL is not set
-                renderLeaderboard(localTopScores, listElement);
-                if(resListElement) renderLeaderboard(localTopScores, resListElement);
-                return;
-            }
-
-            fetch(SCRIPT_URL)
-                .then(res => res.json())
-                .then(data => {
-                    renderLeaderboard(data, listElement);
-                    if(resListElement) renderLeaderboard(data, resListElement);
-                })
-                .catch(err => {
-                    console.error("Fetch Leaderboard Error:", err);
-                    renderLeaderboard(localTopScores, listElement);
-                    if(resListElement) renderLeaderboard(localTopScores, resListElement);
-                });
+        // Timer Functions
+        function startTimer() {
+            secondsElapsed = 0;
+            timerInterval = setInterval(() => {
+                secondsElapsed++;
+                let mins = Math.floor(secondsElapsed / 60);
+                let secs = secondsElapsed % 60;
+                document.getElementById('timer-display').innerText = 
+                    `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+            }, 1000);
         }
 
-        function renderLeaderboard(data, targetElement) {
-            if(!data || data.length === 0) {
-                targetElement.innerHTML = '<li style="text-align: center; color: var(--text-muted); padding: 15px;">ยังไม่มีสถิติถูกบันทึก</li>';
-                return;
-            }
-
-            let html = '';
-            data.slice(0, 5).forEach((item, index) => {
-                const rank = index + 1;
-                const minutes = Math.floor(item.time / 60);
-                const seconds = item.time % 60;
-                const timeFormatted = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')} น.`;
-
-                html += `
-                    <li class="leaderboard-item">
-                        <div class="rank-badge">${rank}</div>
-                        <div class="player-info">
-                            <i class="fa-solid fa-user-circle" style="color: var(--primary);"></i>
-                            <strong>${escapeHtml(item.name)}</strong>
-                        </div>
-                        <div class="player-score-time">
-                            <div class="player-score">${item.score} / 30</div>
-                            <div class="player-time">${timeFormatted}</div>
-                        </div>
-                    </li>
-                `;
-            });
-            targetElement.innerHTML = html;
+        function stopTimer() {
+            clearInterval(timerInterval);
+            let mins = Math.floor(secondsElapsed / 60);
+            let secs = secondsElapsed % 60;
+            return `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
         }
 
         // Start Quiz
         function startQuiz() {
-            const input = document.getElementById('player-name');
-            userName = input.value.trim();
-            if(!userName) {
+            const nameInput = document.getElementById('username').value.trim();
+            if (!nameInput) {
                 alert('กรุณากรอกชื่อก่อนเริ่มทำแบบทดสอบครับ');
                 return;
             }
-
-            document.getElementById('quiz-user-display').innerHTML = `<i class="fa-solid fa-user"></i> ผู้ทดสอบ: ${escapeHtml(userName)}`;
+            userName = nameInput;
             currentQuestion = 0;
-            userAnswers = new Array(quizData.length).fill(null);
-            secondsElapsed = 0;
+            userAnswers.fill(null);
             
+            showPage('page2');
             startTimer();
-            renderQuestion();
-            showPage('page-quiz');
+            loadQuestion();
         }
 
-        // Timer
-        function startTimer() {
-            clearInterval(timerInterval);
-            const timerText = document.getElementById('timer-text');
-            timerInterval = setInterval(() => {
-                secondsElapsed++;
-                const mins = Math.floor(secondsElapsed / 60);
-                const secs = secondsElapsed % 60;
-                timerText.textContent = `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
-            }, 1000);
-        }
+        // Load Question Item
+        function loadQuestion() {
+            const q = questions[currentQuestion];
+            document.getElementById('question-count').innerText = `ข้อที่ ${currentQuestion + 1} / ${questions.length}`;
+            document.getElementById('question-text').innerText = q.q;
 
-        // Render Question
-        function renderQuestion() {
-            const q = quizData[currentQuestion];
-            document.getElementById('question-number').textContent = `ข้อที่ ${currentQuestion + 1} / ${quizData.length}`;
-            document.getElementById('question-text').textContent = q.q;
-
-            // Progress bar
-            const progress = ((currentQuestion + 1) / quizData.length) * 100;
-            document.getElementById('progress-bar').style.width = `${progress}%`;
-
-            // Options
             const container = document.getElementById('options-container');
             container.innerHTML = '';
 
-            const prefixes = ['ก', 'ข', 'ค', 'ง'];
             q.options.forEach((opt, idx) => {
-                const isSelected = userAnswers[currentQuestion] === idx;
-                const btn = document.createElement('div');
-                btn.className = `option-btn ${isSelected ? 'selected' : ''}`;
-                btn.onclick = () => selectOption(idx);
-                btn.innerHTML = `
-                    <div class="option-prefix">${prefixes[idx]}</div>
-                    <div>${opt.replace(/^[ก-ง]\.\s*/, '')}</div>
-                `;
-                container.appendChild(btn);
+                const div = document.createElement('div');
+                div.className = 'option-item' + (userAnswers[currentQuestion] === idx ? ' selected' : '');
+                div.innerHTML = `<i class="${userAnswers[currentQuestion] === idx ? 'fa-solid fa-circle-check' : 'fa-regular fa-circle'}"></i> ${opt}`;
+                div.onclick = () => selectOption(idx);
+                container.appendChild(div);
             });
 
-            // Navigation Buttons
-            document.getElementById('prev-btn').style.display = currentQuestion === 0 ? 'none' : 'block';
-            
             const nextBtn = document.getElementById('next-btn');
-            if (currentQuestion === quizData.length - 1) {
-                nextBtn.innerHTML = 'ส่งคำตอบ <i class="fa-solid fa-paper-plane"></i>';
-                nextBtn.className = 'btn btn-success';
+            if (currentQuestion === questions.length - 1) {
+                nextBtn.innerHTML = `<i class="fa-solid fa-paper-plane"></i> ส่งคำตอบ`;
             } else {
-                nextBtn.innerHTML = 'ถัดไป <i class="fa-solid fa-arrow-right"></i>';
-                nextBtn.className = 'btn';
+                nextBtn.innerHTML = `<i class="fa-solid fa-arrow-right"></i> ข้อถัดไป`;
             }
-
-            nextBtn.disabled = userAnswers[currentQuestion] === null;
         }
 
         function selectOption(index) {
             userAnswers[currentQuestion] = index;
-            renderQuestion();
+            loadQuestion();
         }
 
         function nextQuestion() {
-            if (userAnswers[currentQuestion] === null) return;
+            if (userAnswers[currentQuestion] === null) {
+                alert('กรุณาเลือกคำตอบก่อนไปข้อถัดไปครับ');
+                return;
+            }
 
-            if (currentQuestion < quizData.length - 1) {
+            if (currentQuestion < questions.length - 1) {
                 currentQuestion++;
-                renderQuestion();
+                loadQuestion();
             } else {
-                finishQuiz();
+                submitQuiz();
             }
         }
 
-        function prevQuestion() {
-            if (currentQuestion > 0) {
-                currentQuestion--;
-                renderQuestion();
-            }
-        }
-
-        // Finish Quiz & Save
-        function finishQuiz() {
-            clearInterval(timerInterval);
-
-            // Calculate Score
+        // Submit Quiz
+        function submitQuiz() {
+            const timeFormatted = stopTimer();
             let score = 0;
-            quizData.forEach((q, idx) => {
-                if (userAnswers[idx] === q.ans) score++;
+            userAnswers.forEach((ans, idx) => {
+                if (ans === questions[idx].ans) {
+                    score++;
+                }
             });
 
-            // Display Results
-            document.getElementById('res-name').textContent = userName;
-            document.getElementById('res-score').textContent = score;
+            // Set result text
+            document.getElementById('res-name').innerText = userName;
+            document.getElementById('res-score').innerText = `${score} / ${questions.length}`;
+            document.getElementById('res-time').innerText = `${timeFormatted} นาที`;
 
-            const mins = Math.floor(secondsElapsed / 60);
-            const secs = secondsElapsed % 60;
-            document.getElementById('res-time').textContent = `${mins} นาที ${secs} วินาที`;
+            // Draw Chart
+            renderChart(score, questions.length - score);
 
-            // Render Chart
-            renderChart(score, quizData.length - score);
+            showPage('page3');
 
-            // Save score locally
-            saveLocalScore(userName, score, secondsElapsed);
-
-            // Save score to Google Sheets via Apps Script
-            saveScoreToSheets(userName, score, secondsElapsed);
-
-            showPage('page-result');
-        }
-
-        function saveLocalScore(name, score, time) {
-            localTopScores.push({ name, score, time });
-            // Sort by score DESC, time ASC
-            localTopScores.sort((a, b) => b.score - a.score || a.time - b.time);
-            localTopScores = localTopScores.slice(0, 5);
-            localStorage.setItem('std_top_scores', JSON.stringify(localTopScores));
-            
-            const resListElement = document.getElementById('result-leaderboard-list');
-            if(resListElement) renderLeaderboard(localTopScores, resListElement);
-        }
-
-        function saveScoreToSheets(name, score, timeInSeconds) {
-            if(!SCRIPT_URL || SCRIPT_URL.includes("https://script.google.com/macros/s/AKfycbw_3J8FMwYyTmy26nCoi3-u7kE7sqbXvZ1RpFp52-OCm8q19bNo9i9GZsQsCCdK1mPo/exec")) return;
-
-            fetch(SCRIPT_URL, {
-                method: 'POST',
-                headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-                body: JSON.stringify({ name: name, score: score, time: timeInSeconds })
-            })
-            .then(res => res.json())
-            .then(data => fetchLeaderboard())
-            .catch(err => console.error('Error saving score:', err));
+            // Send score to Apps Script Backend
+            saveScore(userName, score, timeFormatted);
         }
 
         // Render Pie Chart
-        function renderChart(correct, incorrect) {
+        function renderChart(correct, wrong) {
             const ctx = document.getElementById('scoreChart').getContext('2d');
-            
-            if (scoreChartInstance) {
-                scoreChartInstance.destroy();
-            }
+            if (scoreChart) scoreChart.destroy();
 
-            scoreChartInstance = new Chart(ctx, {
+            scoreChart = new Chart(ctx, {
                 type: 'doughnut',
                 data: {
-                    labels: ['ตอบถูก (%)', 'ตอบผิด (%)'],
+                    labels: ['ทำได้', 'ทำไม่ได้'],
                     datasets: [{
-                        data: [
-                            ((correct / 30) * 100).toFixed(1),
-                            ((incorrect / 30) * 100).toFixed(1)
-                        ],
-                        backgroundColor: ['#10b981', '#ef4444'],
-                        borderWidth: 2,
-                        borderColor: '#ffffff'
+                        data: [correct, wrong],
+                        backgroundColor: ['#2ec4b6', '#e63946'],
+                        borderWidth: 0
                     }]
                 },
                 options: {
                     responsive: true,
                     plugins: {
-                        legend: { position: 'bottom', labels: { font: { family: 'Kanit' } } },
-                        tooltip: {
-                            callbacks: {
-                                label: function(context) { return ` ${context.label}: ${context.raw}%`; }
-                            }
-                        }
+                        legend: { position: 'bottom' }
                     }
                 }
             });
         }
 
-        // Solution Page
-        function showSolutionPage() {
-            const container = document.getElementById('solution-container');
+        // Answer Key Page
+        function goToAnswerKey() {
+            const container = document.getElementById('answers-container');
             container.innerHTML = '';
 
-            quizData.forEach((q, idx) => {
-                const uAns = userAnswers[idx];
-                const isCorrect = uAns === q.ans;
+            questions.forEach((q, idx) => {
+                const userAns = userAnswers[idx];
+                const isCorrect = userAns === q.ans;
 
-                const item = document.createElement('div');
-                item.className = `solution-item ${isCorrect ? 'correct' : 'incorrect'}`;
+                const card = document.createElement('div');
+                card.className = `answer-card ${isCorrect ? 'correct-card' : 'wrong-card'}`;
 
-                item.innerHTML = `
-                    <div class="solution-question">${q.q}</div>
-                    <div class="solution-answer">
-                        <strong>คำตอบของคุณ:</strong> 
-                        <span class="${isCorrect ? 'correct-tag' : 'incorrect-tag'}">
-                            ${uAns !== null ? q.options[uAns] : 'ไม่ได้ตอบ'} 
-                            ${isCorrect ? '<i class="fa-solid fa-circle-check"></i>' : '<i class="fa-solid fa-circle-xmark"></i>'}
-                        </span>
-                    </div>
-                    ${!isCorrect ? `
-                        <div class="solution-answer" style="margin-top: 4px;">
-                            <strong>เฉลยที่ถูกต้อง:</strong> <span class="correct-tag">${q.options[q.ans]}</span>
-                        </div>
-                    ` : ''}
+                card.innerHTML = `
+                    <div class="answer-title">${q.q}</div>
+                    <div class="user-ans">คุณตอบ: ${userAns !== null ? q.options[userAns] : 'ไม่ได้ตอบ'} ${isCorrect ? '<i class="fa-solid fa-check" style="color:var(--success);"></i>' : '<i class="fa-solid fa-xmark" style="color:var(--danger);"></i>'}</div>
+                    ${!isCorrect ? `<div class="correct-ans">เฉลยที่ถูกต้อง: ${q.options[q.ans]}</div>` : ''}
                 `;
-                container.appendChild(item);
+                container.appendChild(card);
             });
 
-            showPage('page-solution');
+            showPage('page4');
         }
 
         function restartQuiz() {
-            document.getElementById('player-name').value = '';
+            document.getElementById('username').value = '';
             fetchLeaderboard();
-            showPage('page-home');
+            showPage('page1');
         }
 
-        function escapeHtml(text) {
-            return text
-                .replace(/&/g, "&amp;")
-                .replace(/</g, "&lt;")
-                .replace(/>/g, "&gt;")
-                .replace(/"/g, "&quot;")
-                .replace(/'/g, "&#039;");
+        // API Integration
+        function saveScore(name, score, timeSpent) {
+            if (!SCRIPT_URL || SCRIPT_URL.includes("https://script.google.com/macros/s/AKfycbzYPlODFoSmuRrEfnr72libaRUtFJK24CvkqOLUDNAyP2tgl5EcwJDxXGt89q-Xsclf/exec")) return;
+
+            fetch(SCRIPT_URL, {
+                method: "POST",
+                mode: "no-cors",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ name: name, score: score, timeSpent: timeSpent })
+            }).then(() => {
+                fetchLeaderboard();
+            }).catch(err => console.error("Error saving score:", err));
+        }
+
+        function fetchLeaderboard() {
+            if (!SCRIPT_URL || SCRIPT_URL.includes("https://script.google.com/macros/s/AKfycbzYPlODFoSmuRrEfnr72libaRUtFJK24CvkqOLUDNAyP2tgl5EcwJDxXGt89q-Xsclf/exec")) {
+                const dummy = "<tr><td colspan='4' style='text-align:center; color:#888;'>กรุณาตั้งค่า SCRIPT_URL เพื่อเปิดใช้ระบบสถิติออนไลน์</td></tr>";
+                document.getElementById('leaderboard-body').innerHTML = dummy;
+                document.getElementById('res-leaderboard-body').innerHTML = dummy;
+                return;
+            }
+
+            fetch(`${SCRIPT_URL}?action=getLeaderboard`)
+                .then(res => res.json())
+                .then(data => {
+                    let html = '';
+                    if (data.length === 0) {
+                        html = `<tr><td colspan="4" style="text-align:center;">ยังไม่มีข้อมูลสถิติ</td></tr>`;
+                    } else {
+                        data.forEach((item, index) => {
+                            html += `
+                                <tr>
+                                    <td>${index + 1}</td>
+                                    <td>${escapeHtml(item.name)}</td>
+                                    <td>${item.score}</td>
+                                    <td>${item.timeSpent}</td>
+                                </tr>
+                            `;
+                        });
+                    }
+                    document.getElementById('leaderboard-body').innerHTML = html;
+                    document.getElementById('res-leaderboard-body').innerHTML = html;
+                })
+                .catch(err => {
+                    console.error("Error fetching leaderboard:", err);
+                });
+        }
+
+        function escapeHtml(str) {
+            return str.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
         }
     </script>
 </body>
